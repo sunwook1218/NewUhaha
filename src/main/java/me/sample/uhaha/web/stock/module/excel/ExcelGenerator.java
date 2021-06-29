@@ -54,7 +54,7 @@ public class ExcelGenerator {
 				
 				s = cFunda.setFundamentalDataList(s);
 				
-				int r = 0;
+				int r = 1;
 				for(FundamentalData f : s.getFundamentalDataList()) {
 					/* Cell */
 					Row row = sheet.createRow(r++);
@@ -78,7 +78,6 @@ public class ExcelGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private Sheet createSheet(Workbook wb, String sheetName) {
