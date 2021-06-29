@@ -36,4 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
+### config ###
 **/application.properties
+
+### excel ###
+workbooks/
