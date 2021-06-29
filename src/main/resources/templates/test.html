@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+	<h1 th:text="${customData}"></h1>
+	<table id="content">
+		<tr>
+			<td>id</td>
+			<td>name</td>
+		</tr>
+		<tr th:each="ele: ${allData}">
+			<td th:text="${ele.id}"></td>
+			<td th:text="${ele.name}"></td>
+		</tr>
+	</table>
+	<hr>
+	<h1>입력 TEST</h1>
+	<input id="id" name="id" type="number"> <br>
+	<input id="name" name="name" type="text"> <br>
+	<button id="submit" >입력</button>
+</body>
+<script>
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			let param_id = $("#id").val();
+			let param_name = $("#name").val();
+
+			/* validation */
+			if(param_id.length === 0 || param_name === 0) {
+				alert("공백으로 할 수 없습니다.");
+				return;
+			}
+
+			$.ajax({
+				url: "./testPost",
+				data: {
+					id: param_id,
+					name: param_name
+				},
+				type: "POST",
+				dataType: "json",
+				beforeSend: function(before) {
+					
+				},
+				success: function(result) {
+					console.log(result.message);
+					alert("등록되었습니다.");
+					Location.reload()
+				},
+				error: function(e) {
+					alert("에러가 발생했습니다.");
+					alert(e);
+				},
+				complete: function(complete) {
+					
+				}
+			})
+
+		});
+	})
+</script>
+</html>
