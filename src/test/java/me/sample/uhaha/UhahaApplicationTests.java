@@ -8,6 +8,7 @@ class UhahaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }

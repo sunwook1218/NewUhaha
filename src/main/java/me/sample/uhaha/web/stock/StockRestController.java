@@ -1,5 +1,7 @@
 package me.sample.uhaha.web.stock;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+
+import me.sample.uhaha.web.stock.module.vo.CurrentBundle;
 
 @RestController
 @RequestMapping("/stock")
@@ -29,6 +33,11 @@ public class StockRestController {
 		}
 		
 		return rm;
+	}
+	
+	@PostMapping("/currentBundle")
+	public CurrentBundle getCurrentBundle() throws IOException {
+		return stockService.getCurrentBundle();
 	}
 
 }

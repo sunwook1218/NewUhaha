@@ -8,10 +8,26 @@
 </head>
 <body>
 	Stock Home
+	<button id="current">최근 동향</button> + Google Chart API
 </body>
 <script>
-	$(document).ready(function() {
-		
+	$("#current").click(function() {
+		$.ajax({
+			url: "./currentBundle",
+			data: {},
+			type: "POST",
+			dataType: "json"
+		})
+		.done(function(json) {
+			alert(json);
+			console.log(json);
+		})
+		.fail(function(xhr, status, errorThrown) {
+			alert(errorThrown);
+		})
+		.always(function() {
+			alert("요청을 보냈습니다.");
+		}); 
 	})
 </script>
 </html>
