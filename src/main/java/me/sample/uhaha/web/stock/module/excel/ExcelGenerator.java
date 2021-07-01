@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -32,7 +34,7 @@ public class ExcelGenerator {
 	@Value("${apache.poi.saveDir}")
 	private String saveDir;
 
-	public void genWorkbook() throws EncryptedDocumentException, InvalidFormatException {
+	public void genWorkbook(HttpServletResponse response) throws EncryptedDocumentException, InvalidFormatException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String dateTimeString = sdf.format(Calendar.getInstance().getTime());
@@ -56,6 +58,7 @@ public class ExcelGenerator {
 				
 				int r = 1;
 				for(FundamentalData f : s.getFundamentalDataList()) {
+					
 					/* Cell */
 					Row row = sheet.createRow(r++);
 					int c = 0;
@@ -70,10 +73,10 @@ public class ExcelGenerator {
 					row.createCell(c++).setCellValue(f.getPer());
 					row.createCell(c++).setCellValue(f.getPbr());
 				}
-				
 			}			
 			
 			/* export file */
+//			wb.write(response.getOutputStream()); //TODO outputStream 수정필요
 			wb.write(fileOut);
 		} catch (IOException e) {
 			e.printStackTrace();

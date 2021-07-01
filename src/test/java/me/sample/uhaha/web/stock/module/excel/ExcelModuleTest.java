@@ -16,7 +16,7 @@ public class ExcelModuleTest {
 
 	@Test
 	void test() throws EncryptedDocumentException, InvalidFormatException, IOException {
-		eg.genWorkbook();
+		eg.genWorkbook(null);
 	}
 
 }

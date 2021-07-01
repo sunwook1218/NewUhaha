@@ -3,6 +3,7 @@ package me.sample.uhaha.web.stock;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import me.sample.uhaha.web.stock.module.vo.CurrentBundle;
@@ -71,6 +73,13 @@ public class StockController {
 		session.setAttribute("logMem", "newLogMem");
 		
 		return "redirect:stock/home";
+	}
+	
+	@RequestMapping("/excel")
+	public void downloadTest(HttpServletResponse response) throws Exception {
+		
+		stockService.doExcelDownload(response);
+		
 	}
 
 }
